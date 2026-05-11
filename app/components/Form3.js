@@ -6,6 +6,8 @@
 import { useState } from "react"
 import { useForm } from "react-hook-form"
 import { motion } from "framer-motion"
+import { ToastContainer, toast } from 'react-toastify';
+
 import {
   User,
   Mail,
@@ -44,7 +46,16 @@ export default function Page() {
 
       console.log(result)
 
-      alert("Nomination Submitted Successfully")
+      toast.success('Submitted succusfully', {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+});
 
       reset()
 
@@ -52,7 +63,16 @@ export default function Page() {
 
       console.log(error)
 
-      alert("Submission Failed")
+      toast.success('submission failed', {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+});
 
     } finally {
 
@@ -71,7 +91,21 @@ export default function Page() {
   ]
 
   return (
+    <>
+     <ToastContainer
+      position="top-right"
+      autoClose={5000}
+      hideProgressBar={false}
+      newestOnTop={false}
+      closeOnClick={false}
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+      theme="dark"
+      />
     <div className="min-h-screen bg-black relative overflow-hidden">
+
 
       {/* Background Effects */}
       <div className="absolute inset-0">
@@ -315,5 +349,6 @@ export default function Page() {
       </div>
 
     </div>
+    </>
   )
 }
