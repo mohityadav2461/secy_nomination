@@ -63,7 +63,7 @@ const onSubmit = async (data) => {
       theme: "dark",
     })
 
-    
+    reset()
 
   } catch (error) {
 
