@@ -38,10 +38,9 @@ export async function POST(request) {
 
     // Google Sheets Update
     await fetch(
-    "https://script.google.com/macros/s/AKfycbwCvXTF0KvAGZJqvA1SGuZrZqxudzNKKbYtsjXbBTo9TBXmkS0rOcONO4kd9N8MnHTLuQ/exec",
+    "https://script.google.com/macros/s/AKfycbyoCk-ocjl52X_CYTVMC4pBY7xWBvwPcHgmZ5I386TthWYbLzG87jurDlL1LwH78VRUFA/exec",
     {
         method: "POST",
-        mode: "no-cors",
         headers: {
         "Content-Type": "application/json",
         },
