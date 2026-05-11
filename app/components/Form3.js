@@ -274,24 +274,7 @@ export default function Page() {
 
               </div>
 
-              {/* Mission */}
-              <div>
-
-                <label className="text-white font-medium mb-3 flex items-center gap-2">
-                  <Target size={18} /> Mission
-                </label>
-
-                <textarea
-                  rows="5"
-                  placeholder="Describe your mission for E-Cell IIT Kanpur..."
-                  {...register("mission", {
-                    required: "Mission is required",
-                  })}
-                  className="w-full bg-white/10 border border-white/20 text-white placeholder:text-gray-300 rounded-2xl px-5 py-4 resize-none outline-none focus:ring-2 focus:ring-orange-400"
-                ></textarea>
-
-              </div>
-
+             
               {/* Vision */}
               <div>
 
@@ -309,6 +292,26 @@ export default function Page() {
                 ></textarea>
 
               </div>
+
+
+               {/* Mission */}
+              <div>
+
+                <label className="text-white font-medium mb-3 flex items-center gap-2">
+                  <Target size={18} /> Mission
+                </label>
+
+                <textarea
+                  rows="5"
+                  placeholder="Describe your mission for E-Cell IIT Kanpur..."
+                  {...register("mission", {
+                    required: "Mission is required",
+                  })}
+                  className="w-full bg-white/10 border border-white/20 text-white placeholder:text-gray-300 rounded-2xl px-5 py-4 resize-none outline-none focus:ring-2 focus:ring-orange-400"
+                ></textarea>
+
+              </div>
+
 
               {/* Startup Idea */}
               <div>
