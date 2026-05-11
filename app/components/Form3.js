@@ -26,48 +26,60 @@ export default function Page() {
     reset,
   } = useForm()
 
-  const onSubmit = async (data) => {
+const onSubmit = async (data) => {
 
-    setLoading(true)
+  setLoading(true)
 
-    try {
+  try {
 
-      const res = await fetch("/api/add", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      })
+    const res = await fetch("/api/add", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
 
-      const result = await res.json()
+    const result = await res.json()
 
-      console.log(result)
+    console.log(result)
 
-      toast.success("Submitted Successfully", {
+    // Backend Error
+    if (!result.success) {
+
+      toast.error(result.message, {
         position: "top-right",
         autoClose: 5000,
         theme: "dark",
       })
 
-      reset()
-
-    } catch (error) {
-
-      console.log(error)
-
-      toast.error("Submission Failed", {
-        position: "top-right",
-        autoClose: 5000,
-        theme: "dark",
-      })
-
-    } finally {
-
-      setLoading(false)
+      return
     }
-  }
 
+    // Success
+    toast.success(result.message || "Submitted Successfully", {
+      position: "top-right",
+      autoClose: 5000,
+      theme: "dark",
+    })
+
+    
+
+  } catch (error) {
+
+    console.log(error)
+
+    toast.error("Server Error", {
+      position: "top-right",
+      autoClose: 5000,
+      theme: "dark",
+    })
+
+  } finally {
+
+    setLoading(false)
+  }
+}
   const verticals = [
     "Events",
     "Startup Development",
@@ -177,7 +189,7 @@ export default function Page() {
                     </label>
 
                     <input
-                      type="text"
+                      type="number"
                       placeholder="Enter roll number"
                       {...register("RollNumber", {
                         required: "Roll Number is required",
@@ -229,6 +241,11 @@ export default function Page() {
                       placeholder="Enter phone number"
                       {...register("PhoneNumber", {
                         required: "Phone Number is required",
+
+                        pattern: {
+                          value: /^[0-9]{10}$/,
+                          message: "Phone Number must be 10 digits",
+                        },
                       })}
                       className="w-full bg-white/10 border border-white/20 text-white placeholder:text-gray-300 rounded-2xl px-5 py-4 outline-none focus:ring-2 focus:ring-orange-400"
                     />
@@ -344,9 +361,24 @@ export default function Page() {
                     placeholder="Describe your mission..."
                     {...register("Mission", {
                       required: "Mission is required",
+
+                      minLength: {
+                        value: 50,
+                        message: "Mission must be at least 50 characters",
+                      },
+
+                      maxLength: {
+                        value: 1000,
+                        message: "Mission cannot exceed 1000 characters",
+                      },
                     })}
                     className="w-full bg-white/10 border border-white/20 text-white placeholder:text-gray-300 rounded-2xl px-5 py-4 resize-none outline-none focus:ring-2 focus:ring-orange-400"
                   ></textarea>
+                  {errors.Mission && (
+                      <p className="text-red-400 mt-2 text-sm">
+                        {errors.Mission.message}
+                      </p>
+                    )}
 
                 </div>
 
@@ -360,11 +392,26 @@ export default function Page() {
                   <textarea
                     rows="5"
                     placeholder="Describe your vision..."
-                    {...register("Vision", {
+                   {...register("Vision", {
                       required: "Vision is required",
+
+                      minLength: {
+                        value: 50,
+                        message: "Vision must be at least 50 characters",
+                      },
+
+                      maxLength: {
+                        value: 1000,
+                        message: "Vision cannot exceed 1000 characters",
+                      },
                     })}
                     className="w-full bg-white/10 border border-white/20 text-white placeholder:text-gray-300 rounded-2xl px-5 py-4 resize-none outline-none focus:ring-2 focus:ring-orange-400"
                   ></textarea>
+                   {errors.Vision && (
+                      <p className="text-red-400 mt-2 text-sm">
+                        {errors.Vision.message}
+                      </p>
+                    )}
 
                 </div>
 
