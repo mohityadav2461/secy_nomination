@@ -420,7 +420,7 @@ const onSubmit = async (data) => {
 
                   <label className="text-white font-medium mb-3 block leading-7">
                     If you were to establish a Startup aimed at solving a real-world problem,
-                    what would it be and what issue would it address?
+                    what would it be and what issue would it address?(optional)
                   </label>
 
                   <textarea
