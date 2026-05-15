@@ -426,9 +426,7 @@ const onSubmit = async (data) => {
                   <textarea
                     rows="7"
                     placeholder="Describe your startup idea..."
-                    {...register("StartupIdea", {
-                      required: "This field is required",
-                    })}
+                    {...register("StartupIdea")}
                     className="w-full bg-white/10 border border-white/20 text-white placeholder:text-gray-300 rounded-2xl px-5 py-4 resize-none outline-none focus:ring-2 focus:ring-orange-400"
                   ></textarea>
 
